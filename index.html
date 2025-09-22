@@ -4,11 +4,11 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Racing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Endless Driving</title>
     <meta
       name="description"
-      content="JavaScript Racing - A fun racing game built with JavaScript" />
+      content="Endless Driving - A fun racing game with touch controls" />
   </head>
   <body>
     <div class="container">
@@ -20,6 +20,13 @@
       <div id="pauseScreen" class="pauseScreen hide">
         <h2>Game Paused</h2>
         <p id="pauseScore">Score: 0</p>
+        <button class="resumeBtn">Resume</button>
+      </div>
+      <div id="gameOverScreen" class="gameOverScreen hide">
+        <h2>Game Over</h2>
+        <p id="gameOverScore">Score: 0</p>
+        <p id="gameOverSpeed">Speed: 30km/h</p>
+        <button class="playAgainBtn">Play Again</button>
       </div>
     </div>
   </body>

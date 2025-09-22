@@ -2,15 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .container {
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
-
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -46,13 +48,15 @@
 }
 
 .score {
-  background-color: black;
+  background: rgba(0, 0, 0, 0.8);
   height: 10vh;
   text-align: center;
   color: white;
   font-size: 1.5em;
-  font-family: fantasy;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
   padding-top: 2rem;
+  backdrop-filter: blur(10px);
 }
 
 .gameArea {
@@ -62,26 +66,31 @@
   overflow: hidden;
   position: relative;
   margin: auto;
+  touch-action: none;
 }
 
 .start {
   position: absolute;
-  background-color: limegreen;
-  padding: 10px;
-  border-radius: 5px;
-  left: 48vw;
-  top: 50vh;
-  color: black;
+  background: linear-gradient(45deg, #2ecc71, #27ae60);
+  padding: 15px 30px;
+  border-radius: 8px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
   z-index: 1;
   text-align: center;
   font-size: 1.5em;
+  font-weight: bold;
   cursor: pointer;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .start:hover {
-  background-color: orangered;
-  color: white;
-  transform: scale(1.1);
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
+  transform: translate(-50%, -50%) scale(1.05);
 }
 
 .pauseScreen {
@@ -95,6 +104,73 @@
   border-radius: 5px;
   text-align: center;
   z-index: 2;
+}
+
+.resumeBtn {
+  background-color: limegreen;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.resumeBtn:hover {
+  background-color: orangered;
+  color: white;
+}
+
+/* Game Over Screen */
+.gameOverScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  z-index: 20;
+}
+
+.gameOverScreen:not(.hide) {
+  display: flex;
+}
+
+.gameOverScreen h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #e74c3c;
+}
+
+.gameOverScreen p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #ecf0f1;
+}
+
+.playAgainBtn {
+  background-color: #2ecc71;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.playAgainBtn:hover {
+  background-color: #27ae60;
 }
 
 @keyframes fadeOut {
@@ -112,12 +188,40 @@
   animation-fill-mode: forwards;
 }
 
+/* Mobile optimizations */
 @media screen and (max-width: 500px) {
   .gameArea {
     width: 90%;
+    max-width: 400px;
   }
-  .startScreen {
-    width: 90%;
-    left: 5%;
+  
+  .start {
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    padding: 15px 25px;
+  }
+  
+  .score {
+    font-size: 1.2em;
+    padding-top: 1.5rem;
+  }
+  
+  .car, .enemy {
+    width: 45px;
+    height: 90px;
+  }
+}
+
+/* Landscape mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .gameArea {
+    height: 90vh;
+  }
+  
+  .score {
+    height: 8vh;
+    padding-top: 1rem;
+    font-size: 1.2em;
   }
 }
